@@ -34,9 +34,22 @@ prismTheme: dark
 
 <slide class="bg-blue">
 ### let和const
-- 不存在变量提升，暂时性死区{.tobuild.fadeInLeft}
+- 没有变量提升，暂时性死区，不允许重复声明{.tobuild.fadeInLeft}
 - 块级作用域{.tobuild.fadeInLeft}
 - 顶层对象的属性与全局变量{.tobuild.fadeInLeft}
 
 <slide class="bg-blue">
 ### 块级作用域
+- ES6之前{.tobuild.fadeInLeft}
+  - 全局作用域
+  - 函数作用域
+- ES6{.tobuild.fadeInLeft}
+  - 块级作用域
+### 顶层对象的属性与全局变量{.tobuild.fadeInLeft}
+```{.tobuild.fadeInLeft}
+let b = 1;
+window.b // undefined
+```
+var命令和function命令声明的全局变量，依旧是顶层对象的属性{.tobuild.fadeInLeft}
+
+而let命令、const命令、class命令声明的全局变量，不属于顶层对象的属性{.tobuild.fadeInLeft}
