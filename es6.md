@@ -53,3 +53,11 @@ window.b // undefined
 var命令和function命令声明的全局变量，依旧是顶层对象的属性{.tobuild.fadeInLeft}
 
 而let命令、const命令、class命令声明的全局变量，不属于顶层对象的属性{.tobuild.fadeInLeft}
+
+<slide class="bg-blue">
+### 解构赋值
+- 只要等号右边的值不是对象或数组，就先将其转为对象{.tobuild.fadeInLeft}
+ - 转为对象以后必须具备Iterator接口{.tobuild.fadeInLeft}
+ - 类数组对象{.tobuild.fadeInLeft}
+- 浅拷贝{.tobuild.fadeInLeft}
+- 对象解构赋值可以取到原型对象上的属性{.tobuild.fadeInLeft}
