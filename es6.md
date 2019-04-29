@@ -29,8 +29,9 @@ prismTheme: dark
   "plugins": ["transform-runtime"]
 }
 ```
-- transform-runtime与babel-polyfill{.tobuild.fadeInLeft}
 - babel-preset-env{.tobuild.fadeInLeft}
+- transform-runtime与babel-polyfill{.tobuild.fadeInLeft}
+  - NOTE: Instance methods such as "foobar".includes("foo") will not work since that would require modification of existing built-ins (Use babel-polyfill for that).{.tobuild.fadeInLeft}
 
 <slide class="bg-blue">
 ### let和const
@@ -61,3 +62,23 @@ var命令和function命令声明的全局变量，依旧是顶层对象的属性
  - 类数组对象{.tobuild.fadeInLeft}
 - 浅拷贝{.tobuild.fadeInLeft}
 - 对象解构赋值可以取到原型对象上的属性{.tobuild.fadeInLeft}
+
+<slide class="bg-blue">
+### 数值的扩展
+```{.tobuild.fadeInLeft}
+isNaN(NaN) // true
+isNaN("NaN") // true
+Number.isNaN(NaN) // true
+Number.isNaN("NaN") // false
+```
+- Number.EPSILON{.tobuild.fadeInLeft}
+```{.tobuild.fadeInLeft}
+0.1 + 0.2 === 0.3 // false{.tobuild.fadeInLeft}
+(0.1+0.2-0.3)<Number.EPSILON //true{.tobuild.fadeInLeft}
+```
+
+<slide class="bg-blue">
+### 函数的扩展
+- 参数默认值
+  - 不传或传undefined
+  - 惰性求值
