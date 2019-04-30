@@ -82,3 +82,4 @@ Number.isNaN("NaN") // false
 - 参数默认值
   - 不传或传undefined
   - 惰性求值
+  - 作用域
