@@ -161,7 +161,7 @@ a['name' + i] = 1
 ```
 
 <slide class="bg-blue">
-### 对象的扩展2{.tobuild.fadeInLeft}
+### 对象的扩展2
 - 属性的可枚举{.tobuild.fadeInLeft}{.tobuild.fadeInLeft}
   - enumerable,Object.getOwnPropertyDescriptor(){.tobuild.fadeInLeft}
   - for...in: 只遍历对象自身的和继承的可枚举的属性{.tobuild.fadeInLeft}
@@ -178,7 +178,7 @@ a['name' + i] = 1
   - Reflect.ownKeys：返回一个数组，包含对象自身的所有键名，不管键名是Symbol或字符串，也不管是否可枚举{.tobuild.fadeInLeft}
 
 <slide class="bg-blue">
-### 对象的扩展3{.tobuild.fadeInLeft}
+### 对象的扩展3
 - super关键字{.tobuild.fadeInLeft}
   - this关键字指向函数所在的当前对象，super关键字指向当前对象的原型对象{.tobuild.fadeInLeft}
   - 只能用在对象的方法中{.tobuild.fadeInLeft}
@@ -191,3 +191,67 @@ a['name' + i] = 1
   let aClone = Object.assign({}, a);
   ```
 - 解构赋值{.tobuild.fadeInLeft}
+
+<slide class="bg-blue">
+### 对象的新增方法1
+- Object.is()
+  - ===的问题
+    - NaN不等于自身
+    - +0等于-0
+  - “Same-value equality”（同值相等）算法
+- Object.assign
+  - 如果该参数不是对象，则会先转成对象
+  ```
+  typeof Object.assign(2) // "object"
+  ```
+  - undefined和null无法转成对象
+  ```
+  Object.assign(undefined) // 报错
+  Object.assign(null) // 报错
+  ```
+  - 浅拷贝
+  - 遇到同名属性就替换
+- Object.getOwnPropertyDescriptors()
+  - ES8引入
+
+<slide class="bg-blue">
+### 对象的新增方法2
+- __proto__
+  - Object.prototype.__proto__
+  - Object.setPrototypeOf()：写操作
+  - Object.getPrototypeOf()：读操作
+  - Object.create()：生成操作
+- Object.keys(),Object.values(),Object.entries()
+- Object.fromEntries()
+  - Object.entries()的逆操作，用于将一个键值对数组转为对象
+  ```
+  const entries = new Map([
+    ['foo', 'bar'],
+    ['baz', 42]
+  ]);
+  Object.fromEntries(entries)// { foo: "bar", baz: 42 }
+  ```
+
+<slide class="bg-blue">
+### Symbol
+- ES6 引入了一种新的原始数据类型Symbol，表示独一无二的值
+  - Symbol.for()
+- 作为对象的属性名
+  - 下面这个构造函数有没有缺点？
+  ```
+  Function.prototype.myCall = function(context){
+    if(!typeof this == 'function'){
+      throw new TypeError('not function')
+    }
+    context = context || global;
+    context.fn = this;
+    const args = [...arguments].slice(1);
+    const result = context.fn(...args);
+    delete context.fn;
+    return result;
+  }
+  ```
+  - 只能用在属性表达式，不能用点运算符
+- 作为属性名的遍历方法
+  - 无法被常规方法遍历
+  - 除了Object.getOwnPropertySymbols和Reflect.ownKeys
