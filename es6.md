@@ -79,7 +79,115 @@ Number.isNaN("NaN") // false
 
 <slide class="bg-blue">
 ### 函数的扩展
-- 参数默认值
-  - 不传或传undefined
-  - 惰性求值
-  - 作用域
+- 参数默认值{.tobuild.fadeInLeft}
+  - 不传或传undefined{.tobuild.fadeInLeft}
+  - 惰性求值{.tobuild.fadeInLeft}
+  - 作用域{.tobuild.fadeInLeft}
+    - 一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域（context）{.tobuild.fadeInLeft}
+- 箭头函数{.tobuild.fadeInLeft}
+  - 所以如果箭头函数直接返回一个对象，必须在对象外面加上括号{.tobuild.fadeInLeft}
+  - this指向的固定化,没有自己的this{.tobuild.fadeInLeft}
+  - 不可以当作构造函数，不可以使用new命令{.tobuild.fadeInLeft}
+  - 不可以使用arguments对象，该对象在函数体内不存在{.tobuild.fadeInLeft}
+  - 不可以使用yield命令，因此箭头函数不能用作 Generator 函数{.tobuild.fadeInLeft}
+- 尾调用{.tobuild.fadeInLeft}
+
+<slide class="bg-blue">
+### 数组的扩展1
+- 扩展运算符{.tobuild.fadeInLeft}
+  - 复制数组{.tobuild.fadeInLeft}
+  - 合并数组{.tobuild.fadeInLeft}
+  - 浅拷贝{.tobuild.fadeInLeft}
+  - 将部署了Iterator接口的数据结构转为数组{.tobuild.fadeInLeft}
+  - Generator函数{.tobuild.fadeInLeft}
+- Array.from{.tobuild.fadeInLeft}
+  - 将部署了Iterator接口的数据结构转为数组{.tobuild.fadeInLeft}
+  - 将任何有length属性的对象转为数组{.tobuild.fadeInLeft}
+  - 第二个参数，作用类似于数组的map方法{.tobuild.fadeInLeft}
+- entries()，keys()和values(){.tobuild.fadeInLeft}
+  - for...of进行遍历{.tobuild.fadeInLeft}
+- Array.prototype.includes{.tobuild.fadeInLeft}
+
+<slide class="bg-blue">
+### 数组的扩展2
+- Array.prototype.flat{.tobuild.fadeInLeft}
+  - flat()默认只会“拉平”一层{.tobuild.fadeInLeft}
+  - flat(Infinity)拉平所有嵌套层级{.tobuild.fadeInLeft}
+  - 返回一个新数组，不改变原数组{.tobuild.fadeInLeft}
+- Array.prototype.map{.tobuild.fadeInLeft}
+  - 先执行map(),再执行flat(){.tobuild.fadeInLeft}
+  - 只拉平一层{.tobuild.fadeInLeft}
+  - 第二个参数，接受一个context，用于绑定函数内部this{.tobuild.fadeInLeft}
+- 数组的空位{.tobuild.fadeInLeft}
+  - ES5{.tobuild.fadeInLeft}
+    - forEach(), filter(), reduce(), every() 和some()都会跳过空位{.tobuild.fadeInLeft}
+    - map()会跳过空位，但会保留这个值{.tobuild.fadeInLeft}
+    - join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串{.tobuild.fadeInLeft}
+  - ES6{.tobuild.fadeInLeft}
+    - 明确将空位转成undefined{.tobuild.fadeInLeft}
+    - Array.from,(...),copyWithin(),fill(),entries(),keys(),values(),find(),findIndex(){.tobuild.fadeInLeft}
+    - for...of循环也会遍历空位{.tobuild.fadeInLeft}
+
+<slide class="bg-blue">
+### 对象的扩展1
+- 属性的简写{.tobuild.fadeInLeft}
+```{.tobuild.fadeInLeft}
+module.exports = { getItem, setItem, clear };
+// 等同于
+module.exports = {
+  getItem: getItem,
+  setItem: setItem,
+  clear: clear
+};
+```
+- 方法的简写{.tobuild.fadeInLeft}
+```{.tobuild.fadeInLeft}
+const o = {
+  method() {
+    return "Hello!";
+  }
+};
+// 等同于
+const o = {
+  method: function() {
+    return "Hello!";
+  }
+};
+```
+- 属性名表达式{.tobuild.fadeInLeft}
+```{.tobuild.fadeInLeft}
+a[i] = 1
+a['name' + i] = 1
+```
+
+<slide class="bg-blue">
+### 对象的扩展2{.tobuild.fadeInLeft}
+- 属性的可枚举{.tobuild.fadeInLeft}{.tobuild.fadeInLeft}
+  - enumerable,Object.getOwnPropertyDescriptor(){.tobuild.fadeInLeft}
+  - for...in: 只遍历对象自身的和继承的可枚举的属性{.tobuild.fadeInLeft}
+  - Object.keys()：返回对象自身的所有可枚举的属性的键名{.tobuild.fadeInLeft}
+  - JSON.stringify()：只串行化对象自身的可枚举的属性{.tobuild.fadeInLeft}
+  - Object.assign()： 忽略enumerable为false的属性，只拷贝对象自身的可枚举的属性{.tobuild.fadeInLeft}
+  - Class的原型的方法都是不可枚举的{.tobuild.fadeInLeft}
+  - 尽量不要用for...in循环，而用Object.keys()代替{.tobuild.fadeInLeft}
+- 属性的遍历{.tobuild.fadeInLeft}
+  - for...in：遍历对象自身的和继承的可枚举属性（不含Symbol属性）{.tobuild.fadeInLeft}
+  - Object.keys：返回一个数组，包括对象自身的（不含继承的）所有可枚举属性的键名（不含Symbol属性）{.tobuild.fadeInLeft}
+  - Object.getOwnPropertyNames：返回一个数组，包含对象自身的所有属性（包括不可枚举属性）的键名（不含Symbol属性）{.tobuild.fadeInLeft}
+  - Object.getOwnPropertySymbols：返回一个数组，包含对象自身的所有（包括不可枚举）Symbol属性的键名{.tobuild.fadeInLeft}
+  - Reflect.ownKeys：返回一个数组，包含对象自身的所有键名，不管键名是Symbol或字符串，也不管是否可枚举{.tobuild.fadeInLeft}
+
+<slide class="bg-blue">
+### 对象的扩展3{.tobuild.fadeInLeft}
+- super关键字{.tobuild.fadeInLeft}
+  - this关键字指向函数所在的当前对象，super关键字指向当前对象的原型对象{.tobuild.fadeInLeft}
+  - 只能用在对象的方法中{.tobuild.fadeInLeft}
+- 扩展运算符（...）{.tobuild.fadeInLeft}
+  - 浅拷贝{.tobuild.fadeInLeft}
+  - 等同于Object.assign(){.tobuild.fadeInLeft}
+  ```{.tobuild.fadeInLeft}
+  let aClone = { ...a };
+  // 等同于
+  let aClone = Object.assign({}, a);
+  ```
+- 解构赋值{.tobuild.fadeInLeft}
