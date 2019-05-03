@@ -221,7 +221,7 @@ a['name' + i] = 1
   - Object.setPrototypeOf()：写操作
   - Object.getPrototypeOf()：读操作
   - Object.create()：生成操作
-- Object.keys(),Object.values(),Object.entries()
+- Object.keys(),ES8:Object.values(),Object.entries()
 - Object.fromEntries()
   - Object.entries()的逆操作，用于将一个键值对数组转为对象
   ```
@@ -255,3 +255,20 @@ a['name' + i] = 1
 - 作为属性名的遍历方法
   - 无法被常规方法遍历
   - 除了Object.getOwnPropertySymbols和Reflect.ownKeys
+
+<slide class="bg-blue">
+### Set数据结构
+- 类似于数组，但是没有重复的值
+- 对象和数组总是不相等的
+- 可以接受具有iterable接口的数据结构作为参数，用来初始化
+```
+const set = new Set([1,2,3,3]); //Set(3) {1, 2, 3}
+const set1 = new Set("abcc"); //Set(3) {"a", "b", "c"}
+```
+- 遍历操作
+  - keys()，values()，entries()
+    - 返回Iterator对象
+    - for...of
+  - forEach()
+- 将Set结构转为数组
+  - Array.from和(...)
