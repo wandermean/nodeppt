@@ -122,11 +122,29 @@
 // obj1[obj] = 1
 // console.log(obj1)
 
-const ary = [[1,2],[1,3]]
-const map = new Map(ary)
-// map.set(ary,1)
-// map.set(ary,1)
-map.set(+0,1)
-map.set(-0,1)
-console.log(Array.from(map))
+// const ary = [[1,2],[1,3]]
+// const map = new Map(ary)
+// // map.set(ary,1)
+// // map.set(ary,1)
+// map.set(+0,1)
+// map.set(-0,1)
+// console.log(Array.from(map))
+
+let target = {
+  name: 'Tom',
+  age: 24
+}
+let handler = {
+  get: function(target, key) {
+      console.log('getting '+key);
+      return target[key]; // 不是target.key
+  },
+  set: function(target, key, value) {
+      console.log('setting '+key);
+      target[key] = value;
+  }
+}
+let proxy = new Proxy(target, handler)
+proxy.name     // 实际执行 handler.get
+proxy.age = 25
 

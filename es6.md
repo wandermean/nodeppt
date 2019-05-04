@@ -162,7 +162,7 @@ a['name' + i] = 1
 
 <slide class="bg-blue">
 ### 对象的扩展2
-- 属性的可枚举{.tobuild.fadeInLeft}{.tobuild.fadeInLeft}
+- 属性的可枚举{.tobuild.fadeInLeft}
   - enumerable,Object.getOwnPropertyDescriptor(){.tobuild.fadeInLeft}
   - for...in: 只遍历对象自身的和继承的可枚举的属性{.tobuild.fadeInLeft}
   - Object.keys()：返回对象自身的所有可枚举的属性的键名{.tobuild.fadeInLeft}
@@ -194,51 +194,51 @@ a['name' + i] = 1
 
 <slide class="bg-blue">
 ### 对象的新增方法1
-- Object.is()
-  - ===的问题
-    - NaN不等于自身
-    - +0等于-0
-  - “Same-value equality”（同值相等）算法
-- Object.assign
-  - 如果该参数不是对象，则会先转成对象
-  ```
+- Object.is(){.tobuild.fadeInLeft}
+  - ===的问题{.tobuild.fadeInLeft}
+    - NaN不等于自身{.tobuild.fadeInLeft}
+    - +0等于-0{.tobuild.fadeInLeft}
+  - “Same-value equality”（同值相等）算法{.tobuild.fadeInLeft}
+- Object.assign{.tobuild.fadeInLeft}
+  - 如果该参数不是对象，则会先转成对象{.tobuild.fadeInLeft}
+  ```{.tobuild.fadeInLeft}
   typeof Object.assign(2) // "object"
   ```
-  - undefined和null无法转成对象
-  ```
+  - undefined和null无法转成对象{.tobuild.fadeInLeft}
+  ```{.tobuild.fadeInLeft}
   Object.assign(undefined) // 报错
   Object.assign(null) // 报错
   ```
-  - 浅拷贝
-  - 遇到同名属性就替换
-- Object.getOwnPropertyDescriptors()
-  - ES8引入
+  - 浅拷贝{.tobuild.fadeInLeft}
+  - 遇到同名属性就替换{.tobuild.fadeInLeft}
+- Object.getOwnPropertyDescriptors(){.tobuild.fadeInLeft}
+  - ES8引入{.tobuild.fadeInLeft}
 
 <slide class="bg-blue">
 ### 对象的新增方法2
-- __proto__
-  - Object.prototype.__proto__
-  - Object.setPrototypeOf()：写操作
-  - Object.getPrototypeOf()：读操作
-  - Object.create()：生成操作
-- Object.keys(),ES8:Object.values(),Object.entries()
-- Object.fromEntries()
-  - Object.entries()的逆操作，用于将一个键值对数组转为对象
-  ```
+- __proto__{.tobuild.fadeInLeft}
+  - Object.prototype.__proto__{.tobuild.fadeInLeft}
+  - Object.setPrototypeOf()：写操作{.tobuild.fadeInLeft}
+  - Object.getPrototypeOf()：读操作{.tobuild.fadeInLeft}
+  - Object.create()：生成操作{.tobuild.fadeInLeft}
+- Object.keys(),ES8:Object.values(),Object.entries(){.tobuild.fadeInLeft}
+- Object.fromEntries(){.tobuild.fadeInLeft}
+  - Object.entries()的逆操作，用于将一个键值对数组转为对象{.tobuild.fadeInLeft}
+  ```{.tobuild.fadeInLeft}
   const entries = new Map([
     ['foo', 'bar'],
     ['baz', 42]
   ]);
-  Object.fromEntries(entries)// { foo: "bar", baz: 42 }
+  Object.fromEntries(entries)// { foo: "bar", baz: 42 }{.tobuild.fadeInLeft}
   ```
 
 <slide class="bg-blue">
 ### Symbol
-- ES6 引入了一种新的原始数据类型Symbol，表示独一无二的值
-  - Symbol.for()
-- 作为对象的属性名
-  - 下面这个构造函数有没有缺点？
-  ```
+- ES6 引入了一种新的原始数据类型Symbol，表示独一无二的值{.tobuild.fadeInLeft}
+  - Symbol.for(){.tobuild.fadeInLeft}
+- 作为对象的属性名{.tobuild.fadeInLeft}
+  - 下面这个构造函数有没有缺点？{.tobuild.fadeInLeft}
+  ```{.tobuild.fadeInLeft}
   Function.prototype.myCall = function(context){
     if(!typeof this == 'function'){
       throw new TypeError('not function')
@@ -251,53 +251,124 @@ a['name' + i] = 1
     return result;
   }
   ```
-  - 只能用在属性表达式，不能用点运算符
-- 作为属性名的遍历方法
-  - 无法被常规方法遍历
-  - 除了Object.getOwnPropertySymbols和Reflect.ownKeys
+  - 只能用在属性表达式，不能用点运算符{.tobuild.fadeInLeft}
+- 作为属性名的遍历方法{.tobuild.fadeInLeft}
+  - 无法被常规方法遍历{.tobuild.fadeInLeft}
+  - 除了Object.getOwnPropertySymbols和Reflect.ownKeys{.tobuild.fadeInLeft}
 
 <slide class="bg-blue">
 ### Set数据结构
-- 类似于数组，但是没有重复的值
-  - NaN相等，+0和-0相等
-  - 引用类型按照是否同一地址来判断是否重复
-- 可以接受具有iterable接口的数据结构作为参数，用来初始化
-```
+- 类似于数组，但是没有重复的值{.tobuild.fadeInLeft}
+  - NaN相等，+0和-0相等{.tobuild.fadeInLeft}
+  - 引用类型按照是否同一地址来判断是否重复{.tobuild.fadeInLeft}
+- 可以接受具有iterable接口的数据结构作为参数，用来初始化{.tobuild.fadeInLeft}
+```{.tobuild.fadeInLeft}
 const set = new Set([1,2,3,3]); //Set(3) {1, 2, 3}
 const set1 = new Set("abcc"); //Set(3) {"a", "b", "c"}
 ```
-- 遍历操作
-  - keys()，values()，entries()
-    - 返回Iterator对象
-    - for...of
-  - forEach()
-  - 遍历顺序就是插入顺序
-- 将Set结构转为数组
-  - Array.from和(...)
+- 遍历操作{.tobuild.fadeInLeft}
+  - keys()，values()，entries(){.tobuild.fadeInLeft}
+    - 返回Iterator对象{.tobuild.fadeInLeft}
+    - for...of{.tobuild.fadeInLeft}
+  - forEach(){.tobuild.fadeInLeft}
+  - 遍历顺序就是插入顺序{.tobuild.fadeInLeft}
+- 将Set结构转为数组{.tobuild.fadeInLeft}
+  - Array.from和(...){.tobuild.fadeInLeft}
 
 <slide class="bg-blue">
 ### Map数据结构
-- 键可以是各种类型的值
-  - 键的重复逻辑同Set
-- 可以接受具有iterable接口，且每个成员都是一个双元素的数组的数据结构，作为参数，用来初始化
-  - Set,Map,Array
-- 对同一个键多次赋值，后面的值将覆盖前面的值
-- 遍历操作
-  - keys()，values()，entries()
-    - 返回Iterator对象
-    - for...of
-  - forEach()
-  - 遍历顺序就是插入顺序
-- 将Map结构转为数组
-  - Array.from和(...):每个成员都是一个双元素的数组
+- 键可以是各种类型的值{.tobuild.fadeInLeft}
+  - 键的重复逻辑同Set{.tobuild.fadeInLeft}
+- 可以接受具有iterable接口，且每个成员都是一个双元素的数组的数据结构，作为参数，用来初始化{.tobuild.fadeInLeft}
+  - Set,Map,Array{.tobuild.fadeInLeft}
+- 对同一个键多次赋值，后面的值将覆盖前面的值{.tobuild.fadeInLeft}
+- 遍历操作{.tobuild.fadeInLeft}
+  - keys()，values()，entries(){.tobuild.fadeInLeft}
+    - 返回Iterator对象{.tobuild.fadeInLeft}
+    - for...of{.tobuild.fadeInLeft}
+  - forEach(){.tobuild.fadeInLeft}
+  - 遍历顺序就是插入顺序{.tobuild.fadeInLeft}
+- 将Map结构转为数组{.tobuild.fadeInLeft}
+  - Array.from和(...):每个成员都是一个双元素的数组{.tobuild.fadeInLeft}
 
 <slide class="bg-blue">
 ### WeakSet和WeakMap数据结构
-- WeakSet
-  - 成员只能是引用类型,不可以是null
-  - 成员对象都是弱引用
-  - 不可遍历
-- WeakMap
-  - 键只能是引用类型,不可以是null
-  - 键的对象都是弱引用
-  - 不可遍历
+- WeakSet{.tobuild.fadeInLeft}
+  - 成员只能是引用类型,不可以是null{.tobuild.fadeInLeft}
+  - 成员对象都是弱引用{.tobuild.fadeInLeft}
+  - 不可遍历{.tobuild.fadeInLeft}
+- WeakMap{.tobuild.fadeInLeft}
+  - 键只能是引用类型,不可以是null{.tobuild.fadeInLeft}
+  - 键的对象都是弱引用{.tobuild.fadeInLeft}
+  - 不可遍历{.tobuild.fadeInLeft}
+
+<slide class="bg-blue">
+### Proxy 1
+- 不直接操作对象，而是一个代理模式{.tobuild.fadeInLeft}
+```{.tobuild.fadeInLeft}
+let target = {
+  name: 'Tom',
+  age: 24
+}
+let handler = {
+  get: function(target, key) {
+    console.log('getting '+key);
+    return target[key]; // 不是target.key
+  },
+  set: function(target, key, value) {
+    console.log('setting '+key);
+    target[key] = value;
+  }
+}
+let proxy = new Proxy(target, handler)
+proxy.name     // 实际执行 handler.get
+proxy.age = 25 // 实际执行 handler.set
+```
+<slide class="bg-blue">
+### Proxy 2
+- 实现vue响应式{.tobuild.fadeInLeft}
+  - Object.observe{.tobuild.fadeInLeft}
+  - Object.defineProperty{.tobuild.fadeInLeft}
+  - Proxy{.tobuild.fadeInLeft}
+    - 无需一层层递归为每个属性添加代理，性能上更好{.tobuild.fadeInLeft}
+    - 可以完美监听到任何方式的数据改变{.tobuild.fadeInLeft}
+    - 浏览器的兼容性{.tobuild.fadeInLeft}
+
+<slide class="bg-blue">
+### Promise
+- 等待状态变成为其他状态就永远不能再更改
+- 构造函数内部的代码立即执行
+- 调用then之后返回一个Promise
+
+<slide class="bg-blue">
+### Generator
+```{.tobuild.fadeInLeft}
+function *fetch() {
+    yield ajax(url, () => {})
+    yield ajax(url1, () => {})
+    yield ajax(url2, () => {})
+}
+let it = fetch()
+let result1 = it.next()
+let result2 = it.next()
+let result3 = it.next()
+```
+```{.tobuild.fadeInLeft}
+function *foo(x) {
+  let y = 2 * (yield (x + 1))
+  let z = yield (y / 3)
+  return (x + y + z)
+}
+let it = foo(5)
+console.log(it.next())   // => {value: 6, done: false}
+console.log(it.next(12)) // => {value: 8, done: false}
+console.log(it.next(13)) // => {value: 42, done: true}
+```
+
+<slide class="bg-blue">
+### async await
+- async函数是Generator函数的语法糖{.tobuild.fadeInLeft}
+- 自带Generator函数的自执行器{.tobuild.fadeInLeft}
+- async函数的返回值一个Promise{.tobuild.fadeInLeft}
+- async表示函数里有异步操作，await表示紧跟在后面的表达式需要等待结果{.tobuild.fadeInLeft}
+- await只能配套async使用{.tobuild.fadeInLeft}
