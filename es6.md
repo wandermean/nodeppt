@@ -259,7 +259,8 @@ a['name' + i] = 1
 <slide class="bg-blue">
 ### Set数据结构
 - 类似于数组，但是没有重复的值
-- 对象和数组总是不相等的
+  - NaN相等，+0和-0相等
+  - 引用类型按照是否同一地址来判断是否重复
 - 可以接受具有iterable接口的数据结构作为参数，用来初始化
 ```
 const set = new Set([1,2,3,3]); //Set(3) {1, 2, 3}
@@ -270,5 +271,33 @@ const set1 = new Set("abcc"); //Set(3) {"a", "b", "c"}
     - 返回Iterator对象
     - for...of
   - forEach()
+  - 遍历顺序就是插入顺序
 - 将Set结构转为数组
   - Array.from和(...)
+
+<slide class="bg-blue">
+### Map数据结构
+- 键可以是各种类型的值
+  - 键的重复逻辑同Set
+- 可以接受具有iterable接口，且每个成员都是一个双元素的数组的数据结构，作为参数，用来初始化
+  - Set,Map,Array
+- 对同一个键多次赋值，后面的值将覆盖前面的值
+- 遍历操作
+  - keys()，values()，entries()
+    - 返回Iterator对象
+    - for...of
+  - forEach()
+  - 遍历顺序就是插入顺序
+- 将Map结构转为数组
+  - Array.from和(...):每个成员都是一个双元素的数组
+
+<slide class="bg-blue">
+### WeakSet和WeakMap数据结构
+- WeakSet
+  - 成员只能是引用类型,不可以是null
+  - 成员对象都是弱引用
+  - 不可遍历
+- WeakMap
+  - 键只能是引用类型,不可以是null
+  - 键的对象都是弱引用
+  - 不可遍历
