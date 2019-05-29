@@ -372,3 +372,6 @@ console.log(it.next(13)) // => {value: 42, done: true}
 - async函数的返回值一个Promise{.tobuild.fadeInLeft}
 - async表示函数里有异步操作，await表示紧跟在后面的表达式需要等待结果{.tobuild.fadeInLeft}
 - await只能配套async使用{.tobuild.fadeInLeft}
+
+<slide class="bg-blue">
+### class
